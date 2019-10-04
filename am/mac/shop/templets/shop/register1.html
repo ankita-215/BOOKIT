@@ -1,0 +1,92 @@
+{% extends 'shop/base.html' %}
+{% block body %}
+<center>
+
+<form method="post" enctype="multipart/form-data"><div class="card-body">     
+<div class="container" style="border: 2px solid"> 
+    <div style="width:50%">
+            <div class="page-header" style="color:black;font-size:20px">Registration form</div>
+            {% if messages %} {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">{{ message }}</div>
+                                {% endfor %} {% endif %}
+        <div class="form-group">
+            <label for="Firstname">Name</label>
+            <input type="text" class="form-control" id="fn1" name="name" placeholder="Full name" required>
+        </div>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="Address">Address</label>
+            <textarea class="form-control" id="adrs" name="address" rows="3" required required pattern="^\d+\s[A-z]+\s[A-z]+"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="mobileno">Mobile No.</label>
+            <input type="tel" class="form-control" id="mn1" name="Mono" placeholder="Mobile no." required maxlength="10" required pattern="^[6-9]\d{9}$">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <div class="form-label-group">
+                <select class="form-control" id="city" name="city" placeholder="District" required>
+                    <option>Ahmedabad</option>
+                    <option>Anand</option>
+                    <option>Aravalli</option>
+                    <option>Amreli</option>
+                    <option>Bharuch</option>
+                    <option>Botad</option>
+                    <option>Bhavnagar</option>
+                    <option>Banaskantha</option>
+                    <option>Chhota Udaipur</option>
+                    <option>Dang</option>
+                    <option>Devbhoomi Dwarka</option>
+                    <option>Dahod</option>
+                    <option>Gandhinagar</option>
+                    <option>Gir Somnath</option>
+                    <option>Jamnagar</option>
+                    <option>Junagadh</option>
+                    <option>Kachchh</option>
+                    <option>Kheda</option>
+                    <option>Morbi</option>
+                    <option>Mehsana</option>
+                    <option>Mahisagar</option>
+                    <option>Mahisagar</option>
+                    <option>Navsari</option>
+                    <option>Panchmahal</option>
+                    <option>Patan</option>
+                    <option>Porbandar</option>
+                    <option>Rajkot</option>
+                    <option>Surat</option>
+                    <option>Sabarkantha</option>
+                    <option>Surendranagar</option>
+                    <option>Tapi</option>
+                    <option>Valsad</option>
+                    <option>Vadodara</option>                                           
+                  </select> </div>
+           
+        </div>
+        <div class="form-group">
+            <label for="pincode">Pincode</label>
+            <input type="text" class="form-control" id="pnc" name="pincode" placeholder="pincode" required maxlength="6">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required aria-describedby="pass"  required pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+            <small id="pass" class="form-text text-muted">Password must have UpperCase, LowerCase, Number/SpecialChar and min 6 Chars</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword2">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" name="Cpassword" placeholder="Confirm Password" required aria-describedby="pass"  required pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+            <small id="pass" class="form-text text-muted"></small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+        <button class="btn btn-primary " type="reset" > Reset</button>
+    </div>
+    </div>
+    </div>
+</form>
+</center>
+{% endblock %}

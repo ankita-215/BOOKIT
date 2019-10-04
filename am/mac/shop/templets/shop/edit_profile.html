@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %} 
+{% load crispy_forms_tags %}{% block body %}
+<center>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="page-header" style="color:black;font-size:20px">Edit Profile</div>
+            <div style="width: 50%;">
+                {% if messages %} {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">{{ message }}</div>
+                {% endfor %} {% endif %}
+                
+                {{ form|crispy }}
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-primary">Cancel</button>
+        </form>
+        <br>
+    </div>
+</center>
+{% endblock %}

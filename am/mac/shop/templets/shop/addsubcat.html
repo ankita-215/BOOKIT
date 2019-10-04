@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+ <form method="POST">{% csrf_token %} 
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+    {% if request.session.lgna != null %}
+    <center>
+            
+    <div class="container" style="border: 2px solid;width:90%"> 
+            <div style="width:100%" class="page-header"> <h3><b>Add SubCategory here...</b></h3></div>
+        <div style="width:50%">
+        
+            <br>
+    <div class="form-group">
+        <label for="Category">Category</label>
+        <select id="Category" name="Category" class="form-control">
+                {% for entry in d %}
+                    <option value="{{ entry.name }}">{{ entry.name }}</option>
+                {% endfor %}
+                </select>
+                <label for="SCategory">Sub Category</label>
+        <input type="text" class="form-control" id="SCategory" name="SCategory" placeholder="Vehicle sub  Category" required pattern="^[A-Z0-9][A-Z0-9 _]*[A-Z0-9]$"  aria-describedby="cat">
+        <small id="cat" class="form-text text-muted">Category should be in  UpperCase, Numbers only </small>
+        <button type="submit" >submit</button>
+    </div>
+    </div>
+    </div>
+</center>
+
+ 
+    {%endif%}
+</form>
+    {% endblock %}

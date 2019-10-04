@@ -1,0 +1,58 @@
+{% extends 'shop/index.html' %} 
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+ <form method="POST">{% csrf_token %} 
+<div class="message" style="margin-top: 160px">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.user != null %}
+    <table class="table table-bordered">
+        <center>
+            <h3 style="color:rosybrown">booking list</h3>
+        </center>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>v_num</th>
+            <th>city</th>
+            <th>address</th>
+            <th>startdate</th>
+            <th>enddate</th>
+            <th></th>
+        </tr>
+        {% for i in u %} 
+        <tr class="danger">
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.v_num}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.startdate}}</td>
+            <td>{{i.enddate}}</td>
+            <td><button type="submit" value="{{i.bid}}" id="DeleteButton" name="DeleteButton" class="btn btn-danger" onclick="check();" ><i class="fas fa-times">cancel</i></button></td>
+        </tr>
+        <script>
+            function check()
+            {
+                alert("are you sure??");
+            }
+        </script>
+   {% endfor %}
+    </table>
+
+    <br>
+    <br>
+    {% endif %}
+</form>   {%endblock%}
+
+    

@@ -1,0 +1,21 @@
+owner:
+first name,last name,email,aadhar card no,address,city,zipcode,mobile number
+,refereance number,vehicle number,vehicle type
+
+driver:
+driving licence 
+experince latter
+adhar card
+bank passbook copy
+police verification
+recent yeaqr medicle report
+charcter certificate
+
+owner upload vehicle
+owner and admin manage bookings
+user bok vehicle
+admin wil aprove /reject request
+only driver bookingsonly vehicle bookings
+driver willc onfirm bookings
+complains
+

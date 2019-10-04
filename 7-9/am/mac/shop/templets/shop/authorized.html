@@ -1,0 +1,76 @@
+{% extends 'shop/index.html' %} 
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+<div class="message" style="margin-top: 160px">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.lgna != null %}
+    <table class="table table-hover">
+        <center>
+            <h3 style="color:rosybrown">User Requests</h3>
+        </center>
+        <tr>
+            <th>Name</th>
+            <th>Mobile no.</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Approve</th>
+            <th>Reject</th>
+        </tr>
+        {% for i in reg %} {% if i.status == 0 %}
+        <tr class="danger">
+            <td>{{i.name}}</td>
+            <td>{{i.Mono}}</td>
+            <td>{{i.City}}</td>
+            <td>{{i.email}}</td>
+    
+           
+            <td><a href="accept{{i.uid}}"><button type="submit" value="{{i.id}}" id="submit" class="btn btn-success" ><i class="fas fa-check">accept</i></button></a></td>
+            <td><a href="authorized{{i.uid}}"><button type="submit" value="{{i.id}}" id="cancel" class="btn btn-danger" ><i class="fas fa-times">Reject</i></button></a></td>
+        </tr>
+        {% endif %} {% endfor %}
+    </table>
+    <br>
+    <br>
+    
+ 
+
+ <table class="table table-hover">
+     <center>
+         <h3 style="color:rosybrown">driver Requests</h3>
+     </center>
+     <tr>
+         <th>Name</th>
+         <th>Mobile no.</th>
+         <th>City</th>
+         <th>Email</th>
+         <th>licence</th>
+         <th>Approve</th>
+         <th>Reject</th>
+     </tr>
+     {% for i in dri %} {% if i.status == 0 %}
+     <tr class="danger">
+         <td>{{i.firstname}}</td>
+         <td>{{i.Mono}}</td>
+         <td>{{i.city}}</td>
+         <td>{{i.email}}</td>
+         <td>{{i.licence}}</td>
+         <td><a href="accept{{i.id}}"><button type="submit" value="{{i.id}}" id="submit" class="btn btn-success" ><i class="fas fa-check">accept</i></button></a></td>
+         <td><a href="authorized{{i.id}}"><button type="submit" value="{{i.id}}" id="cancel" class="btn btn-danger" ><i class="fas fa-times">Reject</i></button></a></td>
+     </tr>
+     {% endif %} {% endfor %}
+ </table>
+
+{%endif%}
+
+{% endblock %}

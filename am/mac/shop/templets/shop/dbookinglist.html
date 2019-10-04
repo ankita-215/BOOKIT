@@ -1,0 +1,51 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.dri != null %}
+    <table class="table table-bordered table-striped table-hover">
+        <center>
+                <div class="page-header" style="color:black;font-size:20px">Driver Booking List</div>
+        </center>
+        <thead class="thead-dark">
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>did</th>
+            <th>city</th>
+            <th>address</th>
+            <th>startdate</th>
+            <th>enddate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in c %} 
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.did}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.startdate}}</td>
+            <td>{{i.enddate}}</td>
+        </tr>
+   {% endfor %}
+</tbody>
+    </table>
+    <br>
+    <br>
+    {% endif %}
+    {%endblock%}
+    

@@ -1,0 +1,139 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5 Transitional//EN" "http://www.w3.org/TR/html5/loose.dtd">  
+    <html>  
+        <head>
+                <script>
+                        function dayDiff()
+                        {
+                             var start = document.getElementById("sdate").value;
+                             var end= document.getElementById("edate").value;
+                             var oneDay = 24*60*60*1000; 
+                             var firstDate = new Date(start);
+                             var secondDate = new Date(end);    
+                             var diffDays =(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+                            document.getElementById("leave").value =diffDays ;
+                         }
+                        </script>
+        </head>
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+<center>
+<div class="table-responsive" style="font-size: 15px;">
+      
+    <!--Farmer Upload Products -->
+<form method="POST" action=" ">
+        {% csrf_token %} 
+        <div class="container" style="border: 2px solid;margin:10px;width:80%;"> 
+       
+                <br>
+    <label for="sdate">StartDate</label>
+    <input type="datetime-local" name="sdate" id="sdate"><br><br>
+    <label for="edate">EndDate</label>
+    <input type="datetime-local" name="edate" id="edate" onchange="dayDiff()"><br><br>
+    <input type="text" name="leave" id="leave" name="leave" hidden>
+    <button type="submit" >submit</button><br><br>
+   </div>
+</form>
+</center>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+         $("#edate").on('input', function () {
+             var txtbalance = $('#sdate').val();
+             var txtdays = $('#edate').val();
+    
+             if (txtbalance === "" || txtdays === "") return false;
+             
+             if (txtbalance>txtdays) {
+                 alert("u cant apply");
+                 document.getElementById('btn').disabled=true
+             }
+             else
+             {
+              document.getElementById('btn').disabled=false
+             }
+         });
+     });
+    </script>
+    <table class="table table-bordered table-striped table-hover">
+        <center>
+                <div class="page-header" style="color:black;font-size:20px">Vehicle List</div>
+        </center>
+        <thead class="thead-dark">
+        <tr>
+            <th>o_name</th>
+            <th>email</th>
+            <th>v_num</th>
+            <th>category</th>
+            <th> subcategory</th>
+            <th>image</th>    
+            <th>-----</th>       
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in d %} 
+        <tr>
+            <td>{{i.o_name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.v_num}}</td>
+            <td>{{i.category}}</td>
+            <td>{{i.subcategory}}</td>
+            <td><img src='/media/{{i.image}}' class="card-img-top" alt="..." style="width:150px;height:150px;"></td>
+            <td><a href="vehicle/{{i.vid}}"><button id="qv{{i.vid}}" class="btn btn-primary cart" >QuickView</button></a></td>
+        </tr>
+   {% endfor %}
+</tbody>
+    </table>
+    <script>
+        function DateCheck()
+        {
+          var StartDate= document.getElementById('sdate').value;
+          var EndDate= document.getElementById('edate').value;
+          var eDate = new Date(EndDate);
+          var sDate = new Date(StartDate);
+        
+          if(StartDate!= '' && StartDate!= '' && sDate> eDate)
+            {
+            alert("Please ensure that the End Date is greater than or equal to the Start Date.");
+            return false;
+            } 
+        }
+        if(DateCheck()==false)
+        {
+          document.getElementById('btn').disabled=true
+        }
+        
+      </script>
+     
+      <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
+      </script>
+      <script language="javascript" type="text/javascript">
+      $(document).ready(function () {
+           $("#id_enddate").on('input', function () {
+               var txtbalance = $('#sdate').val();
+               var txtdays = $('#edate').val();
+      
+               if (txtbalance === "" || txtdays === "") return false;
+      
+               if (txtbalance>txtdays) {
+                   alert("u cant apply");
+                   document.getElementById('btn').disabled=true
+               }
+               else
+               {
+                document.getElementById('btn').disabled=false
+               }
+           });
+       });
+      </script>
+    
+    {%endblock%}

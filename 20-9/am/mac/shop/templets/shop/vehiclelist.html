@@ -1,0 +1,52 @@
+{% extends 'shop/index.html' %} 
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+<div class="message" style="margin-top: 160px">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.lgna != null %}
+    <table class="table table-bordered">
+        <center>
+            <h3 style="color:rosybrown">vehicle list</h3>
+        </center>
+        <tr>
+            <th>o_name</th>
+            <th>email</th>
+            <th>v_num</th>
+            <th>category</th>
+            <th> subcategory</th>
+            <th>image</th>
+           
+    
+
+           
+        </tr>
+        {% for i in v %} 
+        <tr class="danger">
+            <td>{{i.o_name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.v_num}}</td>
+            <td>{{i.category}}</td>
+            <td>{{i.subcategory}}</td>
+            <td><img src='/media/{{i.image}}' class="card-img-top" alt="..."></td>
+            
+            
+        </tr>
+   {% endfor %}
+    </table>
+   
+    <br>
+    <br>
+    {% endif %}
+    {%endblock%}
+    

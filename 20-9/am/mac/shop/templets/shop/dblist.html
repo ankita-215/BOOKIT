@@ -1,0 +1,130 @@
+{% extends 'shop/index.html' %} 
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5 Transitional//EN" "http://www.w3.org/TR/html5/loose.dtd">  
+    <html>  
+        <head>
+                <script>
+                        function dayDiff()
+                        {
+                             var start = document.getElementById("sdate").value;
+                             var end= document.getElementById("edate").value;
+                             var oneDay = 24*60*60*1000; 
+                             var firstDate = new Date(start);
+                             var secondDate = new Date(end);    
+                             var diffDays =(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+                            document.getElementById("leave").value =diffDays ;
+                         }
+                        </script>
+        </head>
+<div class="message" style="margin-top: 160px">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+      
+    <!--Farmer Upload Products -->
+<form method="POST" action=" ">
+        {% csrf_token %} 
+    <input type="datetime-local" name="sdate" id="sdate">
+    <input type="datetime-local" name="edate" id="edate" onchange="dayDiff()">
+    <div class="form-group">
+        <label for="city">City</label>
+        <div class="form-label-group">
+            <select class="form-control" id="city" name="city" placeholder="District" required>
+                <option>Ahmedabad</option>
+                <option>Anand</option>
+                <option>Aravalli</option>
+                <option>Amreli</option>
+                <option>Bharuch</option>
+                <option>Botad</option>
+                <option>Bhavnagar</option>
+                <option>Banaskantha</option>
+                <option>Chhota Udaipur</option>
+                <option>Dang</option>
+                <option>Devbhoomi Dwarka</option>
+                <option>Dahod</option>
+                <option>Gandhinagar</option>
+                <option>Gir Somnath</option>
+                <option>Jamnagar</option>
+                <option>Junagadh</option>
+                <option>Kachchh</option>
+                <option>Kheda</option>
+                <option>Morbi</option>
+                <option>Mehsana</option>
+                <option>Mahisagar</option>
+                <option>Mahisagar</option>
+                <option>Navsari</option>
+                <option>Panchmahal</option>
+                <option>Patan</option>
+                <option>Porbandar</option>
+                <option>Rajkot</option>
+                <option>Surat</option>
+                <option>Sabarkantha</option>
+                <option>Surendranagar</option>
+                <option>Tapi</option>
+                <option>Valsad</option>
+                <option>Vadodara</option>                                           
+              </select> </div>
+       
+    </div>
+    <input type="text" name="leave" id="leave" name="leave" hidden>
+    <button type="submit" >submit</button>
+   
+</form>
+
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+         $("#edate").on('input', function () {
+             var txtbalance = $('#sdate').val();
+             var txtdays = $('#edate').val();
+    
+             if (txtbalance === "" || txtdays === "") return false;
+             
+             if (txtbalance>txtdays) {
+                 alert("u cant apply");
+                 document.getElementById('btn').disabled=true
+             }
+             else
+             {
+              document.getElementById('btn').disabled=false
+             }
+         });
+     });
+    </script>
+    <div class="table-responsive" style="font-size: 15px;">
+    
+        <table class="table table-bordered">
+            <center>
+                <h3 style="color:rosybrown">driver list</h3>
+            </center>
+            <tr>
+                <th>Name</th>
+                <th>Mobile no.</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>licence number</th>
+                
+            </tr>
+            {% for i in d%} 
+            <tr class="danger">
+                <td>{{i.firstname}}</td>
+                <td>{{i.Mono}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.licence}}</td>
+                <td><a href="driver/{{i.did}}"><button id="qv{{i.did}}" class="btn btn-primary cart" >QuickView</button></a></td>
+                
+            </tr>
+          {% endfor %}
+        </table>
+        <br>
+        <br>
+        {%endblock%}

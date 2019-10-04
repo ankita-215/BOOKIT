@@ -1,0 +1,65 @@
+{% extends 'shop/index.html' %}
+{% block body %}
+<div class="container my-4">
+    <div class="row">
+    <div class="col-md-4">
+    <div class="row">
+        <img src="/media/{{v.image}}" width="233px" height="385px">
+    </div>
+       
+
+    </div>
+    <div class="col-md-8">
+        <table>
+            <tr >
+                <td style="padding-left:20px"><b> name</b></td>
+                <td style="padding-left:20px"><b>:</b></td>
+                <td style="padding-left:20px">{{v.firstname}}{{v.lastname}}</td>
+            </tr>
+            <br>
+            <tr>
+                <td style="padding-left:20px"><b>email</b></td>
+                <td style="padding-left:20px"><b>:</b></td>
+                <td style="padding-left:20px">{{v.email}}</td>
+            </tr>
+            <br>
+            <tr>
+                <td style="padding-left:20px"><b>licence</b></td>
+                <td style="padding-left:20px"><b>:</b></td>
+                <td style="width:100px"><a href='/media/{{v.licence}}' alt="...">Licence</td>
+            </tr>
+            <br>
+            <tr>
+                <td style="padding-left:20px"><b>Police Verification Document</b></td>
+                <td style="padding-left:20px"><b>:</b></td>
+                <td style="width:100px"><a href='/media/{{v.policeverification}}' alt="...">Police verification doc</td>
+            </tr>
+            <tr>
+                <td style="padding-left:20px"><b>Medicle Report</b></td>
+                <td style="padding-left:20px"><b>:</b></td>
+                <td style="width:100px"><a href='/media/{{v.mediclereport}}' alt="...">Medicle Reports</td>
+            </tr>
+             
+            <br>
+        </table>
+
+        <br>
+        <br>
+        <div class="row">
+         <a href="/dbook1"><button id="qv{{v.did}}" class="btn btn-primary cart">proceed</button></a>  
+        <div>
+
+            </div>
+
+      
+
+    </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock %}

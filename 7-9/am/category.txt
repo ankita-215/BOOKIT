@@ -1,0 +1,12 @@
+camper
+18 wheeler
+caravan
+cement truck
+delivery truck
+dragster car
+dump truck
+flatbed truck
+minibus
+mobile home vehicle
+pickup truck
+rickshaw

@@ -1,0 +1,62 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.lgno != null %}
+    <table class="table w-auto table-responsive table-bordered">
+        <center>
+                <div class="page-header" style="color:black;font-size:20px">Vehicle List</div>
+        </center>
+        <thead class="thead-dark">
+        <tr>
+           
+            <th>Email</th>
+            <th>Vehicle Number</th>
+            <th>Category</th>
+            <th>SubCategory</th>
+            <th>Image</th>
+            <th>Police Verificaton Doc.</th>
+            <th></th>
+    
+
+           
+        </tr>
+    </thead>
+        {% for i in v %} 
+        <tbody>
+        <tr>
+          
+            <td>{{i.email}}</td>
+            <td>{{i.v_num}}</td>
+            <td>{{i.category}}</td>
+            <td>{{i.subcat}}</td>
+            <td><img src='/media/{{i.image}}' class="card-img-top" alt="..." style="width:100px;height:85px;"></td>
+            <td style="width:100px"><a href='/media/{{i.document}}' alt="...">{{i.document}}</td>
+            <td><a href="editveh{{i.vid}}"><button id="qv{{i.vid}}" value="{{i.vid}}" class="btn btn-primary cart">Edit</button></a></td>
+        </tr>
+        
+    </tbody>     
+           
+   {% endfor %}
+    </table>
+    
+    <br>
+    </div>
+    {% endif %}
+
+<br>
+    {%endblock%}
+    

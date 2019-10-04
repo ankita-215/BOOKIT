@@ -1,0 +1,79 @@
+{% extends 'shop/index.html' %}
+
+{% load crispy_forms_tags %}
+{%block css%}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/js/bootstrap-datetimepicker.min.js"></script>
+{%endblock%}
+{% block body %}
+<center>
+  <div class="container" style="border: 2px solid">
+   
+  <h2>booking form</h2>
+
+  <form method="post" id="dBookingForm" data-point-url="{% url 'ajax_load_point' %}" novalidate >
+    {% csrf_token %}
+
+            <div class="row">
+          <div class="col-md-4">
+            <div class="row">
+               <img src="/media/{{v.image}}" width="255px" height="385px" style="border:5px solid black;margin:50px;margin-right:100px" >
+            </div>
+            
+            
+            
+            <br>
+            <br>
+          </div>
+ <div style="width: 50%;align:center">
+<div class="col-md-12" style="margin:50px"> 
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">{{ message }}</div>
+    {% endfor %} {% endif %}  
+    <div class="form-group">
+        <label for="sdate">startdate</label>
+        <input type="text" class="form-control" id="sdate" value={{request.session.sdate}} disabled>
+    </div>
+    <div class="form-group">
+        <label for="edate">enddate</label>
+        <input type="text" class="form-control" id="edate" value={{request.session.edate}} disabled>
+    </div> 
+
+               {{ form|crispy }}
+      
+         
+         <button type="submit" class="btn btn-primary" >choose departure point</button>
+    <a href= "/" target="_blank"><button type="submit" class="btn btn-primary" id="btn">book</button></a>
+  </div>
+  </form>
+</div>
+</div>
+</center>
+  
+  <script>
+    $("#id_c").change(function () {
+      var url = $("#BookingForm").attr("data-point-url");  
+      var c= $(this).val();
+
+      $.ajax({                      
+        url: url,                  
+        data: {
+          'c': c       
+        },
+        success: function (data) {   
+          $("#id_p").html(data);  
+        }
+      });
+
+    });
+  </script>
+  <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
+  </script>
+  
+
+{% endblock %}

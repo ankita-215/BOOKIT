@@ -1,0 +1,91 @@
+{% extends 'shop/index.html' %}
+{% block body %}
+<center>
+<form method="POST">
+        {% csrf_token %}
+    <div class="container" style="border: 2px solid"> 
+        <div style="width:50%">
+                <h2>Driver Registration form </h2>
+                {% if messages %} {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}">{{ message }}</div>
+                                    {% endfor %} {% endif %}
+        <div class="col-md-8">
+            <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname" class="form-control" required="required"/>
+        </div>
+    
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input type="text" name="lastname" class="form-control" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email"  required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="Mono">mobile number</label>
+            <input type="text" name=" Mono" class="form-control" required="required" maxlength="10"/>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <div class="form-label-group">
+                <select class="form-control" id="city" name="city" placeholder="District" required>
+                    <option>Ahmedabad</option>
+                    <option>Anand</option>
+                    <option>Aravalli</option>
+                    <option>Amreli</option>
+                    <option>Bharuch</option>
+                    <option>Botad</option>
+                    <option>Bhavnagar</option>
+                    <option>Banaskantha</option>
+                    <option>Chhota Udaipur</option>
+                    <option>Dang</option>
+                    <option>Devbhoomi Dwarka</option>
+                    <option>Dahod</option>
+                    <option>Gandhinagar</option>
+                    <option>Gir Somnath</option>
+                    <option>Jamnagar</option>
+                    <option>Junagadh</option>
+                    <option>Kachchh</option>
+                    <option>Kheda</option>
+                    <option>Morbi</option>
+                    <option>Mehsana</option>
+                    <option>Mahisagar</option>
+                    <option>Mahisagar</option>
+                    <option>Navsari</option>
+                    <option>Panchmahal</option>
+                    <option>Patan</option>
+                    <option>Porbandar</option>
+                    <option>Rajkot</option>
+                    <option>Surat</option>
+                    <option>Sabarkantha</option>
+                    <option>Surendranagar</option>
+                    <option>Tapi</option>
+                    <option>Valsad</option>
+                    <option>Vadodara</option>                                           
+                  </select> </div>
+           
+        </div>
+        <div class="form-group">
+            <label for="licence">Licence no</label>
+            <input type="text" name="licence" class="form-control" required="required" maxlength="15"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" required="required" minlength="4" maxlength="16"/>
+        </div>
+        <div class="form-group">
+            <label for="Cpassword">Confirm Password</label>
+            <input type="password" name="Cpassword" class="form-control" required="required"/>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-save"></span> Submit</button>
+        </div>
+    </div>
+    </div>
+</form>
+</center>
+{% endblock %}

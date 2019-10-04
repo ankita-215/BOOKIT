@@ -1,0 +1,48 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+    <div class="table-responsive" style="font-size: 15px;">
+    <center>
+    <table class="table table-bordered table-striped table-hover">
+
+        <center>
+                <div class="page-header" style="color:black;font-size:20px">User List</div>
+        </center>
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Mobile no.</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>City</th>
+           <th>Pincode</th>
+            
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in v %}
+        <tr>
+          
+            <td>{{i.name}}</td>
+            <td>{{i.Mono}}</td>
+            <td>{{i.email}}</td> 
+            <td>{{i.address}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.Pincode}}</td>
+                      
+        </tr>
+{% endfor %}
+</tbody> 
+    </table>
+</center>
+    </div>
+    {%endblock%}

@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.lgnd != null %}
+  
+    <table class="table table-bordered table-striped table-hover">
+        <center>
+                <div class="page-header" style="color:black;font-size:20px">Driver Booking List</div>
+        </center>
+        <thead class="thead-dark">
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>driver name</th>
+            <th>city</th>
+            <th>address</th>
+            <th>startdate</th>
+            <th>enddate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in d %} {% if i.status == 0%}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.did}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.startdate}}</td>
+            <td>{{i.enddate}}</td>
+            <td><a href="accept{{i.db}}"><button type="submit" value="{{i.db}}" id="submit" class="btn btn-success" >accept</button></a></td>
+            <td><a href="authorized{{i.db}}"><button type="submit" value="{{i.db}}" id="cancel" class="btn btn-danger" >Reject</button></a></td>
+        </tr>{%endif%}
+   {% endfor %}
+</tbody>
+    </table>
+   
+    {% endif %}
+    {%endblock%}
+    

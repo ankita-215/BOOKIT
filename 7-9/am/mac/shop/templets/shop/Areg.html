@@ -1,0 +1,26 @@
+{% extends 'shop/index.html' %} 
+{% load crispy_forms_tags %}
+{% block body %}
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+   
+</head> 
+<body> 
+        <center>
+    <div class="container" style="border: 2px solid">
+            <div style="width: 50%;align:center">
+    <form method = "post" enctype="multipart/form-data"> 
+        
+        <h2>admin registration form</h2>{% csrf_token %} 
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">{{ message }}</div>
+        {% endfor %} {% endif %} {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Upload</button> 
+    </form>
+    </div> 
+</div>
+</center>
+</body> 
+</html> 
+{% endblock %}

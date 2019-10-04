@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+
+{% block body %}
+ 
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+    <a href="{% url 'person_changelist' %}">Nevermind</a>
+    <option value="">---------</option>
+   {% for city in cities %}
+      <option value="{{ city.pk }}">{{ city.name }}</option>
+{% endfor %}
+  </form>
+{% endblock %}

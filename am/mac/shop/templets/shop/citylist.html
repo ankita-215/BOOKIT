@@ -1,0 +1,47 @@
+{% extends 'shop/base.html' %}
+{% load render_table from django_tables2 %}
+ {% render_table table %}
+  {% block body %} 
+ {% load static %}
+
+<div class="message">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %} {% endif %}</div>
+
+<div class="table-responsive" style="font-size: 15px;">
+
+    <!--Farmer Upload Products -->
+
+    {% if request.session.lgna != null %}
+    
+    
+    <table class="table table-bordered table-striped table-hover">
+        <center>
+                <div class="page-header" style="color:black;font-size:20px">City List</div>
+        </center>
+        <thead class="thead-dark">
+        <tr>
+    
+                <th>Cities</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr></thead>
+            <tbody>
+            {% for i in v%}
+            <tr>
+                    <td>{{i.name}}</td>
+                    <td><a href="ecity{{i.id}}"><button id="{{i.id}}" value="{{i.id}}" class="btn btn-primary cart">Edit</button></a></td>
+                    <td><a href="delcity{{i.id}}"><button value="{{i.id}}" id="DeleteButton" name="DeleteButton" class="btn btn-danger"  >Delete</button></td></a></td>
+                    {% endfor %}
+                </table>
+    <br>
+    <br>
+            
+    {%endif%}
+</div>
+<br>
+
+    {%endblock%}
